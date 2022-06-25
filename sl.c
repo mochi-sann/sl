@@ -149,7 +149,7 @@ int add_sl(int x) {
   if (x < -LOGOLENGTH)
     return ERR;
   y = LINES / 2 - 3;
-
+  // 飛ぶanimation
   if (FLY == 1) {
     y = (x / 6) + LINES - (COLS / 6) - LOGOHEIGHT;
     py1 = 2;
@@ -162,6 +162,7 @@ int add_sl(int x) {
     my_mvaddstr(y + i + py2, x + 42, car[i]);
     my_mvaddstr(y + i + py3, x + 63, car[i]);
   }
+  /* 機関車の中に人を追加 */
   if (ACCIDENT == 1) {
     add_man(y + 1, x + 14);
     add_man(y + 1 + py2, x + 45);
@@ -169,10 +170,11 @@ int add_sl(int x) {
     add_man(y + 1 + py3, x + 66);
     add_man(y + 1 + py3, x + 74);
   }
+  // 煙を追加
   add_smoke(y - 1, x + LOGOFUNNEL);
   return OK;
 }
-
+// D51 の機関車
 int add_D51(int x) {
   static char *d51[D51PATTERNS][D51HEIGHT + 1] = {
       {D51STR1, D51STR2, D51STR3, D51STR4, D51STR5, D51STR6, D51STR7, D51WHL11,
@@ -213,6 +215,7 @@ int add_D51(int x) {
   return OK;
 }
 
+// でかい方の機関車の組み合わせ
 int add_C51(int x) {
   static char *c51[C51PATTERNS][C51HEIGHT + 1] = {
       {C51STR1, C51STR2, C51STR3, C51STR4, C51STR5, C51STR6, C51STR7, C51WH11,
@@ -253,6 +256,7 @@ int add_C51(int x) {
   return OK;
 }
 
+// なんか叫んでる人を追加する
 void add_man(int y, int x) {
   static char *man[2][2] = {{"", "(O)"}, {"Help!", "\\O/"}};
   int i;
